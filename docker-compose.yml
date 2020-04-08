@@ -18,6 +18,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      - ANSIBLE_HOST_KEY_CHECKING=False
     container_name: tool
     hostname: tool
     volumes:
