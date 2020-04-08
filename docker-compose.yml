@@ -1,0 +1,24 @@
+version: "3.2"
+services:
+  web:
+    build:
+      context: ./
+      dockerfile: ./node/Dockerfile
+    working_dir: /root
+    command: /bin/sh -c "/etc/init.d/sshd start && tail -f /dev/null"
+
+  db:
+    build:
+      context: ./
+      dockerfile: ./node/Dockerfile
+    working_dir: /root
+    command: /bin/sh -c "/etc/init.d/sshd start && tail -f /dev/null"
+
+  tool:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tool
+    hostname: tool
+    volumes:
+      - .:/ansible

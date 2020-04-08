@@ -1,0 +1,18 @@
+---
+- name: users exist
+  user: name={{users['name']}} state=present password={{users['password']}} groups={{users['groups']}}
+  with_items: users
+  tags: users
+
+- name: ~/.ssh for users exsit
+  file: path="/home/{{users['name']}}/.ssh" state=directory owner={{users['name']}} group={{users['name']}} mode=0700
+  with_items: users
+  tags: userss
+
+- name: authorized keys is deployed
+  copy: src="authorized_keys_for_{{users['name']}}" dest="/home/{{users['name']}}/.ssh/authorized_keys" owner={{users['name']}} group={{users['name']}} mode=0600
+  with_items: users
+  tags: users
+
+# - name: sudo configured
+#   copy: src="sudoers" dest="/etc/sudoers" owner=root group=root mode=0440

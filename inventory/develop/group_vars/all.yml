@@ -1,0 +1,5 @@
+---
+users:
+    name: "user1"
+    password: "$1$Id9Bdq7D$B7bNBQO.MaZP.XKXm.Hbl.aa"
+    groups: "wheel"
